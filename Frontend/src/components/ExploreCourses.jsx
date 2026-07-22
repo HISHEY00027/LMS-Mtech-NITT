@@ -17,40 +17,40 @@ function ExploreCourses() {
           <span className='text-[35px] font-semibold'>Explore</span>
           <span className='text-[35px] font-semibold'>Our Courses</span>
           <p className='text-[17px]'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem vel iure explicabo laboriosam accusantium expedita laudantium facere magnam.</p>
-          <button className='px-[20px] py-[10px] border-2 bg-[black] border-white text-white rounded-[10px] text-[18px] font-light flex gap-2 mt-[40px]' onClick={()=>navigate("/allcourses")}>Explore Courses <SiViaplay className='w-[30px] h-[30px] fill-white' /></button>
+          <button className='px-[20px] py-[10px] border-2 bg-[#e8551d] border-[#e8551d] text-white rounded-[10px] text-[18px] font-light flex gap-2 mt-[40px]' onClick={()=>navigate("/allcourses")}>Explore Courses <SiViaplay className='w-[30px] h-[30px] fill-white' /></button>
 
         </div>
         <div className='w-[720px] max-w-[90%] lg:h-[300px] md:min-h-[300px] flex items-center justify-center lg:gap-[60px] gap-[50px] flex-wrap mb-[50px] lg:mb-[0px]'>
           <div className='w-[100px] h-[130px] font-light text-[13px] flex flex-col gap-3 text-center '>
-            <div className='w-[100px] h-[90px] bg-[#fbd9fb] rounded-lg flex items-center justify-center '><TbDeviceDesktopAnalytics className='w-[60px] h-[60px] text-[#6d6c6c]' /></div>
+            <div className='w-[100px] h-[90px] bg-[#f6f5f2] border border-gray-200 rounded-lg flex items-center justify-center '><TbDeviceDesktopAnalytics className='w-[60px] h-[60px] text-[#0d2c4d]' /></div>
             Web Devlopment
             </div>
             <div className='w-[100px] h-[130px] font-light text-[13px] flex flex-col gap-3 text-center '>
-            <div className='w-[100px] h-[90px] bg-[#d9fbe0] rounded-lg flex items-center justify-center '><LiaUikit className='w-[60px] h-[60px] text-[#6d6c6c]' /></div>
+            <div className='w-[100px] h-[90px] bg-[#f6f5f2] border border-gray-200 rounded-lg flex items-center justify-center '><LiaUikit className='w-[60px] h-[60px] text-[#0d2c4d]' /></div>
             UI UX Designing
             </div>
             <div className='w-[100px] h-[130px] font-light text-[13px] flex flex-col gap-3 text-center'>
-            <div className='w-[100px] h-[90px] bg-[#fcb9c8] rounded-lg flex items-center justify-center '><MdAppShortcut className='w-[50px] h-[50px] text-[#6d6c6c]' /></div>
+            <div className='w-[100px] h-[90px] bg-[#f6f5f2] border border-gray-200 rounded-lg flex items-center justify-center '><MdAppShortcut className='w-[50px] h-[50px] text-[#0d2c4d]' /></div>
             App Devlopment
             </div>
             <div className='w-[100px] h-[130px] font-light text-[13px] flex flex-col gap-3 text-center'>
-            <div className='w-[100px] h-[90px] bg-[#fbd9fb] rounded-lg flex items-center justify-center '><FaHackerrank className='w-[55px] h-[55px] text-[#6d6c6c]' /></div>
+            <div className='w-[100px] h-[90px] bg-[#f6f5f2] border border-gray-200 rounded-lg flex items-center justify-center '><FaHackerrank className='w-[55px] h-[55px] text-[#0d2c4d]' /></div>
             Ethical Hacking
             </div>
             <div className='w-[100px] h-[130px] font-light text-[13px] flex flex-col gap-3 text-center'>
-            <div className='w-[100px] h-[90px] bg-[#d9fbe0] rounded-lg flex items-center justify-center '><TbBrandOpenai className='w-[55px] h-[55px] text-[#6d6c6c]' /></div>
+            <div className='w-[100px] h-[90px] bg-[#f6f5f2] border border-gray-200 rounded-lg flex items-center justify-center '><TbBrandOpenai className='w-[55px] h-[55px] text-[#0d2c4d]' /></div>
             AI/ML
             </div>
             <div className='w-[100px] h-[130px] font-light text-[13px] flex flex-col gap-3 text-center'>
-            <div className='w-[100px] h-[90px] bg-[#fcb9c8] rounded-lg flex items-center justify-center '><SiGoogledataproc className='w-[45px] h-[45px] text-[#6d6c6c]' /></div>
+            <div className='w-[100px] h-[90px] bg-[#f6f5f2] border border-gray-200 rounded-lg flex items-center justify-center '><SiGoogledataproc className='w-[45px] h-[45px] text-[#0d2c4d]' /></div>
             Data Science
             </div>
             <div className='w-[100px] h-[130px] font-light text-[13px] flex flex-col gap-3 text-center '>
-            <div className='w-[100px] h-[90px] bg-[#fbd9fb] rounded-lg flex items-center justify-center '><BsClipboardDataFill className='w-[50px] h-[50px] text-[#6d6c6c]' /></div>
+            <div className='w-[100px] h-[90px] bg-[#f6f5f2] border border-gray-200 rounded-lg flex items-center justify-center '><BsClipboardDataFill className='w-[50px] h-[50px] text-[#0d2c4d]' /></div>
             Data Analytics
             </div>
             <div className='w-[100px] h-[130px] font-light text-[13px] flex flex-col gap-3 text-center'>
-            <div className='w-[100px] h-[90px] bg-[#d9fbe0] rounded-lg flex items-center justify-center '><SiOpenaigym className='w-[50px] h-[50px] text-[#6d6c6c]' /></div>
+            <div className='w-[100px] h-[90px] bg-[#f6f5f2] border border-gray-200 rounded-lg flex items-center justify-center '><SiOpenaigym className='w-[50px] h-[50px] text-[#0d2c4d]' /></div>
             AI Tools
             </div>
         </div>
