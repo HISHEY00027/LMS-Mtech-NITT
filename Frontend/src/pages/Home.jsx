@@ -1,13 +1,19 @@
-import React from 'react'
-import home from "../assets/home1.jpg"
+import React, { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import Nav from '../components/Nav'
-import { SiViaplay } from "react-icons/si";
 import { FaEye, FaBullseye, FaCheckCircle } from "react-icons/fa";
 import Logos from '../components/Logos';
 import CardPage from '../components/CardPage';
 import ExploreCourses from '../components/ExploreCourses';
-import ai from '../assets/ai.png'
-import { useNavigate } from 'react-router-dom';
+import HeroSection from '../components/home/HeroSection';
+import WhyChoose from '../components/home/WhyChoose';
+import Placements from '../components/home/Placements';
+import FacultySection from '../components/home/FacultySection';
+import Testimonials from '../components/home/Testimonials';
+import AdmissionProcess from '../components/home/AdmissionProcess';
+import CampusGallery from '../components/home/CampusGallery';
+import FAQSection from '../components/home/FAQSection';
+import Footer from '../components/Footer';
 
 const missionPoints = [
   "To offer undergraduate, postgraduate, doctoral and modular programmes in multi-disciplinary / inter-disciplinary and emerging areas.",
@@ -17,57 +23,37 @@ const missionPoints = [
 ]
 
 function Home() {
-  const navigate = useNavigate()
+  const location = useLocation()
+
+  // Scroll to anchor section when navigated with a hash (e.g. /#faculty)
+  useEffect(() => {
+    if (location.hash) {
+      const el = document.getElementById(location.hash.slice(1))
+      if (el) {
+        // slight delay so the fixed header offset settles after render
+        setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "start" }), 60)
+      }
+    } else {
+      window.scrollTo(0, 0)
+    }
+  }, [location])
 
   return (
     <div className='w-full overflow-hidden bg-white'>
       <Nav />
 
-      {/* Hero - offset for fixed header (72px mobile / 116px desktop) */}
-      <div className='w-full pt-[72px] lg:pt-[116px] relative'>
-        <div className='relative w-full h-[62vh] lg:h-[78vh]'>
-          <img src={home} className='object-cover w-full h-full' alt="NIT Tiruchirappalli campus" />
-          <div className='absolute inset-0 bg-nitt-navy/70' />
-          <div className='absolute inset-0 flex flex-col items-center justify-center px-6 text-center gap-4'>
-            <span className='text-nitt-accent font-semibold tracking-widest uppercase text-[13px] md:text-[15px]'>
-              Learning Management System
-            </span>
-            <h1 className='text-white font-bold text-balance text-[28px] md:text-[44px] lg:text-[56px] leading-tight max-w-[900px]'>
-              National Institute of Technology Tiruchirappalli
-            </h1>
-            <p className='text-white/85 text-[15px] md:text-[18px] max-w-[640px] text-pretty'>
-              Grow your skills to advance your career path with courses crafted by our educators.
-            </p>
-            <div className='flex items-center justify-center gap-3 flex-wrap mt-4'>
-              <button
-                className='px-[22px] py-[11px] bg-nitt-accent text-white rounded-[6px] text-[16px] flex items-center gap-2 cursor-pointer hover:opacity-90 transition'
-                onClick={() => navigate("/allcourses")}
-              >
-                View all Courses <SiViaplay className='w-[22px] h-[22px] fill-white' />
-              </button>
-              <button
-                className='px-[22px] py-[11px] border-2 border-white text-white rounded-[6px] text-[16px] flex items-center gap-2 cursor-pointer hover:bg-white hover:text-nitt-navy transition'
-                onClick={() => navigate("/searchwithai")}
-              >
-                Search with AI <img src={ai} className='w-[24px] h-[24px] rounded-full' alt="" />
-              </button>
-            </div>
-          </div>
-        </div>
+      <HeroSection />
 
-        {/* Announcement strip - like nitt.edu news ticker */}
-        <div className='w-full bg-nitt-cream border-y border-gray-200 py-[10px] px-4 flex items-center justify-center gap-3 flex-wrap'>
-          <span className='bg-nitt-accent text-white text-[12px] font-semibold px-3 py-1 rounded-[4px] uppercase tracking-wide'>
-            NIRF 2025
-          </span>
-          <p className='text-nitt-navy text-[14px] md:text-[15px] text-center'>
-            First among NITs, Ninth in Engineering &mdash; National Institute of Technology, Tiruchirappalli
-          </p>
-        </div>
-      </div>
+      {/* Popular Programs - existing course cards from backend */}
+      <section id="programs" className='scroll-mt-[130px]'>
+        <CardPage />
+        <ExploreCourses />
+      </section>
+
+      <WhyChoose />
 
       {/* Vision & Mission - from nitt.edu */}
-      <section className='w-full bg-white py-[60px] px-6 lg:px-[8%]' aria-labelledby="vision-mission-heading">
+      <section id="about" className='w-full bg-white py-[60px] px-6 lg:px-[8%] scroll-mt-[130px]' aria-labelledby="vision-mission-heading">
         <div className='flex flex-col items-center gap-2 mb-[40px]'>
           <h2 id="vision-mission-heading" className='text-nitt-navy font-bold text-[30px] md:text-[40px] text-balance text-center'>
             Vision &amp; Mission
@@ -114,9 +100,16 @@ function Home() {
         </div>
       </section>
 
+      <Placements />
+
+      <FacultySection />
+
+      <Testimonials />
+      <AdmissionProcess />
+      <CampusGallery />
       <Logos />
-      <ExploreCourses />
-      <CardPage />
+      <FAQSection />
+      <Footer />
     </div>
   )
 }

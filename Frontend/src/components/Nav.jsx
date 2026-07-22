@@ -12,8 +12,10 @@ import { setUserData } from '../redux/userSlice';
 
 const navLinks = [
   { label: "Home", path: "/" },
-  { label: "All Courses", path: "/allcourses" },
-  { label: "Search with AI", path: "/searchwithai" },
+  { label: "Online Programs", path: "/#programs" },
+  { label: "Faculty", path: "/#faculty" },
+  { label: "About", path: "/#about" },
+  { label: "Contact", path: "/#contact" },
 ]
 
 function Nav() {
@@ -81,12 +83,20 @@ function Nav() {
           )}
 
           {!userData && (
-            <button
-              className='px-[22px] py-[8px] bg-nitt-accent text-white rounded-[6px] text-[15px] cursor-pointer hover:opacity-90 transition'
-              onClick={() => navigate("/login")}
-            >
-              Login
-            </button>
+            <>
+              <button
+                className='px-[18px] py-[8px] border border-nitt-navy text-nitt-navy rounded-[6px] text-[15px] cursor-pointer hover:bg-nitt-navy hover:text-white transition'
+                onClick={() => navigate("/login")}
+              >
+                Login
+              </button>
+              <button
+                className='px-[22px] py-[8px] bg-nitt-accent text-white rounded-[6px] text-[15px] cursor-pointer hover:opacity-90 transition'
+                onClick={() => navigate("/signup")}
+              >
+                Apply Now
+              </button>
+            </>
           )}
           {userData && (
             <button
@@ -117,7 +127,7 @@ function Nav() {
           <button
             key={link.path}
             className={`px-[26px] h-full text-[15px] cursor-pointer transition border-b-[3px] ${
-              location.pathname === link.path
+              location.pathname + location.hash === link.path
                 ? "text-white border-nitt-accent"
                 : "text-white/80 border-transparent hover:text-white hover:border-nitt-accent/60"
             }`}
@@ -126,6 +136,7 @@ function Nav() {
             {link.label}
           </button>
         ))}
+
         {userData && (
           <button
             className={`px-[26px] h-full text-[15px] cursor-pointer transition border-b-[3px] ${
@@ -157,7 +168,10 @@ function Nav() {
         )}
 
         <span className='w-[240px] text-center text-white border border-white/30 bg-nitt-navy-light rounded-lg py-[16px] text-[17px] cursor-pointer' onClick={() => { setShowHam(false); navigate("/") }}>Home</span>
-        <span className='w-[240px] text-center text-white border border-white/30 bg-nitt-navy-light rounded-lg py-[16px] text-[17px] cursor-pointer' onClick={() => { setShowHam(false); navigate("/allcourses") }}>All Courses</span>
+        <span className='w-[240px] text-center text-white border border-white/30 bg-nitt-navy-light rounded-lg py-[16px] text-[17px] cursor-pointer' onClick={() => { setShowHam(false); navigate("/#programs") }}>Online Programs</span>
+        <span className='w-[240px] text-center text-white border border-white/30 bg-nitt-navy-light rounded-lg py-[16px] text-[17px] cursor-pointer' onClick={() => { setShowHam(false); navigate("/#faculty") }}>Faculty</span>
+        <span className='w-[240px] text-center text-white border border-white/30 bg-nitt-navy-light rounded-lg py-[16px] text-[17px] cursor-pointer' onClick={() => { setShowHam(false); navigate("/#about") }}>About</span>
+        <span className='w-[240px] text-center text-white border border-white/30 bg-nitt-navy-light rounded-lg py-[16px] text-[17px] cursor-pointer' onClick={() => { setShowHam(false); navigate("/#contact") }}>Contact</span>
         <span className='w-[240px] text-center text-white border border-white/30 bg-nitt-navy-light rounded-lg py-[16px] text-[17px] cursor-pointer' onClick={() => { setShowHam(false); navigate("/profile") }}>My Profile</span>
         <span className='w-[240px] text-center text-white border border-white/30 bg-nitt-navy-light rounded-lg py-[16px] text-[17px] cursor-pointer' onClick={() => { setShowHam(false); navigate("/enrolledcourses") }}>My Courses</span>
 
