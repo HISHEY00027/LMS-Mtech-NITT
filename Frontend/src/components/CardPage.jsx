@@ -25,7 +25,7 @@ function CardPage() {
     }
              
         </div>
-        <button className=' absolute right-[9%] bottom-2 px-[20px] py-[10px] border-2 lg:border-white border-black bg-black lg:text-white text-white rounded-[10px] text-[18px] font-light flex gap-2 cursor-pointer' onClick={()=>navigate("/allcourses")}>View all Courses <SiViaplay className='w-[30px] h-[30px] lg:fill-white fill-white' /></button>
+        <button className=' absolute right-[9%] bottom-2 px-[20px] py-[10px] border-0 bg-[#011529] lg:text-white text-white rounded-[10px] text-[18px] font-light flex gap-2 cursor-pointer' onClick={()=>navigate("/allcourses")}>View all Courses <SiViaplay className='w-[30px] h-[30px] lg:fill-white fill-white' /></button>
         </div>
   )
 }

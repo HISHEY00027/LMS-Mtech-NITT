@@ -1,6 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 @import "tailwindcss";
 
+@theme {
+  /* NIT Trichy brand palette */
+  --color-nitt-navy: #011529;
+  --color-nitt-navy-light: #0d2c4d;
+  --color-nitt-accent: #e8551d;
+  --color-nitt-cream: #f6f5f2;
+}
+
 *{
   font-family: "Outfit";
 }
