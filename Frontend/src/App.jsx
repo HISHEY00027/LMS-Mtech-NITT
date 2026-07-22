@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
-export const serverUrl = "http://localhost:8000"
+export const serverUrl = ""
 import { ToastContainer } from "react-toastify"
 import useCurrentUser from './customHooks/useCurrentUser'
 import { useSelector } from 'react-redux'

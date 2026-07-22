@@ -3,9 +3,8 @@ import { useLocation } from 'react-router-dom'
 import Nav from '../components/Nav'
 import { FaEye, FaBullseye, FaCheckCircle } from "react-icons/fa";
 import Logos from '../components/Logos';
-import CardPage from '../components/CardPage';
-import ExploreCourses from '../components/ExploreCourses';
 import HeroSection from '../components/home/HeroSection';
+import ProgramCatalog from '../components/home/ProgramCatalog';
 import WhyChoose from '../components/home/WhyChoose';
 import Placements from '../components/home/Placements';
 import FacultySection from '../components/home/FacultySection';
@@ -43,10 +42,9 @@ function Home() {
 
       <HeroSection />
 
-      {/* Popular Programs - existing course cards from backend */}
+      {/* NPTEL-style catalog - courses grouped by program */}
       <section id="programs" className='scroll-mt-[90px] lg:scroll-mt-[180px]'>
-        <CardPage />
-        <ExploreCourses />
+        <ProgramCatalog />
       </section>
 
       <WhyChoose />
