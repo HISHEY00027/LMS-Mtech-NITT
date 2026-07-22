@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { IoMdPerson } from "react-icons/io";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GiSplitCross } from "react-icons/gi";
-import { FaFacebookF, FaTwitter, FaYoutube, FaLinkedinIn, FaSearch } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 
 import { useNavigate, useLocation } from 'react-router-dom';
 import { serverUrl } from '../App';
@@ -11,16 +11,10 @@ import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserData } from '../redux/userSlice';
 
-const utilityLinks = [
-  { label: "Placements", path: "/#placements" },
-  { label: "Library", path: "/#gallery" },
-  { label: "Departments", path: "/#programs" },
-  { label: "Events", path: "/#faq" },
-]
-
 const navLinks = [
   { label: "Home", path: "/" },
   { label: "Online Programs", path: "/#programs" },
+  { label: "All Courses", path: "/allcourses" },
   { label: "Faculty", path: "/#faculty" },
   { label: "About", path: "/#about" },
   { label: "Contact", path: "/#contact" },
@@ -47,42 +41,6 @@ function Nav() {
 
   return (
     <header className='w-full fixed top-0 z-30 shadow-md'>
-      {/* Top utility bar - like nitt.edu */}
-      <div className='w-full bg-nitt-navy hidden lg:flex items-center justify-between pl-8 border-b border-white/15 h-[36px]'>
-        <div className='flex items-center gap-1'>
-          {utilityLinks.map((link) => (
-            <button
-              key={link.label}
-              className='px-[12px] text-[13px] text-white/90 hover:text-white cursor-pointer transition'
-              onClick={() => navigate(link.path)}
-            >
-              {link.label}
-            </button>
-          ))}
-          <div className='flex items-center gap-4 ml-4' aria-label="Social media links">
-            <a href="https://www.facebook.com/NITTrichy" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><FaFacebookF className='w-[13px] h-[13px] fill-white/90 hover:fill-white' /></a>
-            <a href="https://twitter.com/NITTEDU" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><FaTwitter className='w-[13px] h-[13px] fill-white/90 hover:fill-white' /></a>
-            <a href="https://www.youtube.com/@NITTrichyOfficial" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><FaYoutube className='w-[15px] h-[15px] fill-white/90 hover:fill-white' /></a>
-            <a href="https://www.linkedin.com/school/national-institute-of-technology-tiruchirappalli/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><FaLinkedinIn className='w-[13px] h-[13px] fill-white/90 hover:fill-white' /></a>
-          </div>
-        </div>
-
-        <div className='flex items-center h-full'>
-          <button className='px-[12px] text-[13px] text-white/90 hover:text-white cursor-pointer transition' onClick={() => navigate("/allcourses")}>All Courses</button>
-          <button className='px-[12px] text-[13px] text-white/90 hover:text-white cursor-pointer transition' onClick={() => navigate("/enrolledcourses")}>My Courses</button>
-          {userData?.role == "educator" && (
-            <button className='px-[12px] text-[13px] text-white/90 hover:text-white cursor-pointer transition' onClick={() => navigate("/dashboard")}>Dashboard</button>
-          )}
-          <button
-            className='h-full w-[48px] bg-nitt-accent flex items-center justify-center cursor-pointer hover:opacity-90 transition ml-2'
-            onClick={() => navigate("/searchwithai")}
-            aria-label="Search with AI"
-          >
-            <FaSearch className='w-[15px] h-[15px] fill-white' />
-          </button>
-        </div>
-      </div>
-
       {/* Institute banner - tall navy with official trilingual NITT logo */}
       <div className='w-full bg-nitt-navy flex items-center justify-between px-4 lg:px-10 h-[80px] lg:h-[110px]'>
         <img
@@ -177,6 +135,27 @@ function Nav() {
             My Courses
           </button>
         )}
+
+        {userData?.role == "educator" && (
+          <button
+            className={`px-[20px] h-full text-[17px] cursor-pointer transition border-b-[3px] ${
+              location.pathname === "/dashboard"
+                ? "text-white border-nitt-accent"
+                : "text-white/85 border-transparent hover:text-white hover:border-nitt-accent/60"
+            }`}
+            onClick={() => navigate("/dashboard")}
+          >
+            Dashboard
+          </button>
+        )}
+
+        <button
+          className='h-full w-[54px] bg-nitt-accent flex items-center justify-center cursor-pointer hover:opacity-90 transition'
+          onClick={() => navigate("/searchwithai")}
+          aria-label="Search with AI"
+        >
+          <FaSearch className='w-[16px] h-[16px] fill-white' />
+        </button>
       </nav>
 
       {/* Mobile full-screen menu */}

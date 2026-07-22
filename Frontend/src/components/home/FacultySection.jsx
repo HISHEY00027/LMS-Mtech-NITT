@@ -10,7 +10,7 @@ const faculty = [
 
 function FacultySection() {
   return (
-    <section id="faculty" className='w-full bg-nitt-cream py-[60px] px-6 lg:px-[8%] scroll-mt-[90px] lg:scroll-mt-[215px]' aria-labelledby="faculty-heading">
+    <section id="faculty" className='w-full bg-nitt-cream py-[60px] px-6 lg:px-[8%] scroll-mt-[90px] lg:scroll-mt-[180px]' aria-labelledby="faculty-heading">
       <div className='flex flex-col items-center gap-2 mb-[40px]'>
         <h2 id="faculty-heading" className='text-nitt-navy font-bold text-[30px] md:text-[40px] text-balance text-center'>
           Learn From Distinguished Faculty

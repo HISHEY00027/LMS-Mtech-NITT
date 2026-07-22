@@ -11,7 +11,6 @@ import Placements from '../components/home/Placements';
 import FacultySection from '../components/home/FacultySection';
 import Testimonials from '../components/home/Testimonials';
 import AdmissionProcess from '../components/home/AdmissionProcess';
-import CampusGallery from '../components/home/CampusGallery';
 import FAQSection from '../components/home/FAQSection';
 import Footer from '../components/Footer';
 
@@ -45,7 +44,7 @@ function Home() {
       <HeroSection />
 
       {/* Popular Programs - existing course cards from backend */}
-      <section id="programs" className='scroll-mt-[90px] lg:scroll-mt-[215px]'>
+      <section id="programs" className='scroll-mt-[90px] lg:scroll-mt-[180px]'>
         <CardPage />
         <ExploreCourses />
       </section>
@@ -53,7 +52,7 @@ function Home() {
       <WhyChoose />
 
       {/* Vision & Mission - from nitt.edu */}
-      <section id="about" className='w-full bg-white py-[60px] px-6 lg:px-[8%] scroll-mt-[90px] lg:scroll-mt-[215px]' aria-labelledby="vision-mission-heading">
+      <section id="about" className='w-full bg-white py-[60px] px-6 lg:px-[8%] scroll-mt-[90px] lg:scroll-mt-[180px]' aria-labelledby="vision-mission-heading">
         <div className='flex flex-col items-center gap-2 mb-[40px]'>
           <h2 id="vision-mission-heading" className='text-nitt-navy font-bold text-[30px] md:text-[40px] text-balance text-center'>
             Vision &amp; Mission
@@ -106,7 +105,6 @@ function Home() {
 
       <Testimonials />
       <AdmissionProcess />
-      <CampusGallery />
       <Logos />
       <FAQSection />
       <Footer />

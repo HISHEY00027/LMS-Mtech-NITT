@@ -17,7 +17,7 @@ function Placements() {
   const navigate = useNavigate()
 
   return (
-    <section id="placements" className='w-full bg-nitt-navy py-[60px] px-6 lg:px-[8%] scroll-mt-[90px] lg:scroll-mt-[215px]' aria-labelledby="placements-heading">
+    <section id="placements" className='w-full bg-nitt-navy py-[60px] px-6 lg:px-[8%] scroll-mt-[90px] lg:scroll-mt-[180px]' aria-labelledby="placements-heading">
       <div className='max-w-[1150px] mx-auto flex flex-col items-center gap-2 mb-[16px]'>
         <h2 id="placements-heading" className='text-white font-bold text-[30px] md:text-[40px] text-balance text-center'>
           Careers That Speak for Themselves
