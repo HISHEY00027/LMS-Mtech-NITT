@@ -13,7 +13,7 @@ function HeroSection() {
   const navigate = useNavigate()
 
   return (
-    <section className='w-full pt-[72px] lg:pt-[116px] relative' aria-label="Hero">
+    <section className='w-full pt-[80px] lg:pt-[200px] relative' aria-label="Hero">
       <div className='relative w-full h-[68vh] lg:h-[82vh]'>
         <img src="/images/campus-hero.png" className='object-cover w-full h-full' alt="NIT Tiruchirappalli campus at golden hour" />
         <div className='absolute inset-0 bg-gradient-to-b from-nitt-navy/80 via-nitt-navy/60 to-nitt-navy/90' />

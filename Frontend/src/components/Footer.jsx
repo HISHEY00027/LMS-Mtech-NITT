@@ -15,7 +15,7 @@ function Footer() {
   }
 
   return (
-    <footer id="contact" className='w-full bg-nitt-navy text-white scroll-mt-[130px]'>
+    <footer id="contact" className='w-full bg-nitt-navy text-white scroll-mt-[90px] lg:scroll-mt-[215px]'>
       <div className='max-w-[1150px] mx-auto px-6 py-[56px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10'>
         {/* About */}
         <div className='flex flex-col gap-4'>

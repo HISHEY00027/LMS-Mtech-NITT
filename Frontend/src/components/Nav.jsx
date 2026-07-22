@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { IoMdPerson } from "react-icons/io";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GiSplitCross } from "react-icons/gi";
+import { FaFacebookF, FaTwitter, FaYoutube, FaLinkedinIn, FaSearch } from "react-icons/fa";
 
 import { useNavigate, useLocation } from 'react-router-dom';
 import { serverUrl } from '../App';
@@ -9,6 +10,13 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserData } from '../redux/userSlice';
+
+const utilityLinks = [
+  { label: "Placements", path: "/#placements" },
+  { label: "Library", path: "/#gallery" },
+  { label: "Departments", path: "/#programs" },
+  { label: "Events", path: "/#faq" },
+]
 
 const navLinks = [
   { label: "Home", path: "/" },
@@ -39,72 +47,92 @@ function Nav() {
 
   return (
     <header className='w-full fixed top-0 z-30 shadow-md'>
-      {/* Institute banner - white like nitt.edu, official NITT logo */}
-      <div className='w-full bg-white flex items-center justify-between px-4 lg:px-10 h-[72px] border-b border-gray-200'>
+      {/* Top utility bar - like nitt.edu */}
+      <div className='w-full bg-nitt-navy hidden lg:flex items-center justify-between pl-8 border-b border-white/15 h-[36px]'>
+        <div className='flex items-center gap-1'>
+          {utilityLinks.map((link) => (
+            <button
+              key={link.label}
+              className='px-[12px] text-[13px] text-white/90 hover:text-white cursor-pointer transition'
+              onClick={() => navigate(link.path)}
+            >
+              {link.label}
+            </button>
+          ))}
+          <div className='flex items-center gap-4 ml-4' aria-label="Social media links">
+            <a href="https://www.facebook.com/NITTrichy" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><FaFacebookF className='w-[13px] h-[13px] fill-white/90 hover:fill-white' /></a>
+            <a href="https://twitter.com/NITTEDU" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><FaTwitter className='w-[13px] h-[13px] fill-white/90 hover:fill-white' /></a>
+            <a href="https://www.youtube.com/@NITTrichyOfficial" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><FaYoutube className='w-[15px] h-[15px] fill-white/90 hover:fill-white' /></a>
+            <a href="https://www.linkedin.com/school/national-institute-of-technology-tiruchirappalli/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><FaLinkedinIn className='w-[13px] h-[13px] fill-white/90 hover:fill-white' /></a>
+          </div>
+        </div>
+
+        <div className='flex items-center h-full'>
+          <button className='px-[12px] text-[13px] text-white/90 hover:text-white cursor-pointer transition' onClick={() => navigate("/allcourses")}>All Courses</button>
+          <button className='px-[12px] text-[13px] text-white/90 hover:text-white cursor-pointer transition' onClick={() => navigate("/enrolledcourses")}>My Courses</button>
+          {userData?.role == "educator" && (
+            <button className='px-[12px] text-[13px] text-white/90 hover:text-white cursor-pointer transition' onClick={() => navigate("/dashboard")}>Dashboard</button>
+          )}
+          <button
+            className='h-full w-[48px] bg-nitt-accent flex items-center justify-center cursor-pointer hover:opacity-90 transition ml-2'
+            onClick={() => navigate("/searchwithai")}
+            aria-label="Search with AI"
+          >
+            <FaSearch className='w-[15px] h-[15px] fill-white' />
+          </button>
+        </div>
+      </div>
+
+      {/* Institute banner - tall navy with official trilingual NITT logo */}
+      <div className='w-full bg-nitt-navy flex items-center justify-between px-4 lg:px-10 h-[80px] lg:h-[110px]'>
         <img
           src="/images/nitt-logo.png"
           alt="National Institute of Technology Tiruchirappalli"
-          className='hidden md:block h-[52px] w-auto cursor-pointer'
+          className='hidden md:block h-[56px] lg:h-[74px] xl:h-[84px] w-auto cursor-pointer'
           onClick={() => navigate("/")}
         />
         <img
           src="/images/nitt-logo-mobile.png"
           alt="National Institute of Technology Tiruchirappalli"
-          className='md:hidden h-[56px] w-auto cursor-pointer'
+          className='md:hidden h-[64px] w-auto cursor-pointer'
           onClick={() => navigate("/")}
         />
 
         <div className='hidden lg:flex items-center gap-4 relative'>
           {!userData ? (
-            <IoMdPerson
-              className='w-[42px] h-[42px] fill-white cursor-pointer border border-white/40 bg-nitt-navy-light rounded-full p-[9px]'
-              onClick={() => setShowPro(prev => !prev)}
-            />
-          ) : (
-            <div
-              className='w-[42px] h-[42px] rounded-full text-white flex items-center justify-center text-[18px] border border-white/60 bg-nitt-navy-light cursor-pointer overflow-hidden'
-              onClick={() => setShowPro(prev => !prev)}
-            >
-              {userData.photoUrl ? (
-                <img src={userData.photoUrl} className='w-full h-full rounded-full object-cover' alt="" />
-              ) : (
-                <span>{userData?.name.slice(0, 1).toUpperCase()}</span>
-              )}
-            </div>
-          )}
-
-          {userData?.role == "educator" && (
-            <button
-              className='px-[18px] py-[8px] border border-nitt-navy text-nitt-navy rounded-[6px] text-[15px] cursor-pointer hover:bg-nitt-navy hover:text-white transition'
-              onClick={() => navigate("/dashboard")}
-            >
-              Dashboard
-            </button>
-          )}
-
-          {!userData && (
             <>
               <button
-                className='px-[18px] py-[8px] border border-nitt-navy text-nitt-navy rounded-[6px] text-[15px] cursor-pointer hover:bg-nitt-navy hover:text-white transition'
+                className='px-[20px] py-[10px] border border-white/60 text-white rounded-[6px] text-[15px] cursor-pointer hover:bg-white hover:text-nitt-navy transition whitespace-nowrap'
                 onClick={() => navigate("/login")}
               >
                 Login
               </button>
               <button
-                className='px-[22px] py-[8px] bg-nitt-accent text-white rounded-[6px] text-[15px] cursor-pointer hover:opacity-90 transition'
+                className='px-[24px] py-[10px] bg-nitt-accent text-white rounded-[6px] text-[15px] cursor-pointer hover:opacity-90 transition whitespace-nowrap'
                 onClick={() => navigate("/signup")}
               >
                 Apply Now
               </button>
             </>
-          )}
-          {userData && (
-            <button
-              className='px-[18px] py-[8px] bg-nitt-accent text-white rounded-[6px] text-[15px] cursor-pointer hover:opacity-90 transition'
-              onClick={handleLogout}
-            >
-              LogOut
-            </button>
+          ) : (
+            <>
+              <div
+                className='w-[46px] h-[46px] rounded-full text-white flex items-center justify-center text-[19px] border border-white/60 bg-nitt-navy-light cursor-pointer overflow-hidden'
+                onClick={() => setShowPro(prev => !prev)}
+              >
+                {userData.photoUrl ? (
+                  <img src={userData.photoUrl} className='w-full h-full rounded-full object-cover' alt="" />
+                ) : (
+                  <span>{userData?.name.slice(0, 1).toUpperCase()}</span>
+                )}
+              </div>
+              <button
+                className='px-[20px] py-[10px] bg-nitt-accent text-white rounded-[6px] text-[15px] cursor-pointer hover:opacity-90 transition'
+                onClick={handleLogout}
+              >
+                LogOut
+              </button>
+            </>
           )}
 
           {showPro && (
@@ -116,20 +144,20 @@ function Nav() {
         </div>
 
         <GiHamburgerMenu
-          className='w-[28px] h-[28px] lg:hidden fill-nitt-navy cursor-pointer'
+          className='w-[30px] h-[30px] lg:hidden fill-white cursor-pointer'
           onClick={() => setShowHam(prev => !prev)}
         />
       </div>
 
-      {/* Primary navigation row - like nitt.edu */}
-      <nav className='w-full bg-nitt-navy hidden lg:flex items-center justify-center gap-2 h-[44px]' aria-label="Main navigation">
+      {/* Primary navigation row - large links like nitt.edu */}
+      <nav className='w-full bg-nitt-navy hidden lg:flex items-center justify-center gap-6 xl:gap-10 h-[54px] border-t border-white/15' aria-label="Main navigation">
         {navLinks.map((link) => (
           <button
             key={link.path}
-            className={`px-[26px] h-full text-[15px] cursor-pointer transition border-b-[3px] ${
+            className={`px-[20px] h-full text-[17px] cursor-pointer transition border-b-[3px] ${
               location.pathname + location.hash === link.path
                 ? "text-white border-nitt-accent"
-                : "text-white/80 border-transparent hover:text-white hover:border-nitt-accent/60"
+                : "text-white/85 border-transparent hover:text-white hover:border-nitt-accent/60"
             }`}
             onClick={() => navigate(link.path)}
           >
@@ -139,10 +167,10 @@ function Nav() {
 
         {userData && (
           <button
-            className={`px-[26px] h-full text-[15px] cursor-pointer transition border-b-[3px] ${
+            className={`px-[20px] h-full text-[17px] cursor-pointer transition border-b-[3px] ${
               location.pathname === "/enrolledcourses"
                 ? "text-white border-nitt-accent"
-                : "text-white/80 border-transparent hover:text-white hover:border-nitt-accent/60"
+                : "text-white/85 border-transparent hover:text-white hover:border-nitt-accent/60"
             }`}
             onClick={() => navigate("/enrolledcourses")}
           >
@@ -152,7 +180,7 @@ function Nav() {
       </nav>
 
       {/* Mobile full-screen menu */}
-      <div className={`fixed top-0 left-0 w-[100vw] h-[100vh] bg-nitt-navy/95 flex items-center justify-center flex-col gap-5 z-40 ${showHam ? "translate-x-[0%] transition duration-600 ease-in-out" : "translate-x-[-100%] transition duration-600 ease-in-out"}`}>
+      <div className={`fixed top-0 left-0 w-[100vw] h-[100vh] bg-nitt-navy/95 flex items-center justify-center flex-col gap-4 z-40 overflow-y-auto ${showHam ? "translate-x-[0%] transition duration-600 ease-in-out" : "translate-x-[-100%] transition duration-600 ease-in-out"}`}>
         <GiSplitCross className='w-[32px] h-[32px] fill-white absolute top-5 right-[4%] cursor-pointer' onClick={() => setShowHam(prev => !prev)} />
 
         {!userData ? (
@@ -167,21 +195,23 @@ function Nav() {
           </div>
         )}
 
-        <span className='w-[240px] text-center text-white border border-white/30 bg-nitt-navy-light rounded-lg py-[16px] text-[17px] cursor-pointer' onClick={() => { setShowHam(false); navigate("/") }}>Home</span>
-        <span className='w-[240px] text-center text-white border border-white/30 bg-nitt-navy-light rounded-lg py-[16px] text-[17px] cursor-pointer' onClick={() => { setShowHam(false); navigate("/#programs") }}>Online Programs</span>
-        <span className='w-[240px] text-center text-white border border-white/30 bg-nitt-navy-light rounded-lg py-[16px] text-[17px] cursor-pointer' onClick={() => { setShowHam(false); navigate("/#faculty") }}>Faculty</span>
-        <span className='w-[240px] text-center text-white border border-white/30 bg-nitt-navy-light rounded-lg py-[16px] text-[17px] cursor-pointer' onClick={() => { setShowHam(false); navigate("/#about") }}>About</span>
-        <span className='w-[240px] text-center text-white border border-white/30 bg-nitt-navy-light rounded-lg py-[16px] text-[17px] cursor-pointer' onClick={() => { setShowHam(false); navigate("/#contact") }}>Contact</span>
-        <span className='w-[240px] text-center text-white border border-white/30 bg-nitt-navy-light rounded-lg py-[16px] text-[17px] cursor-pointer' onClick={() => { setShowHam(false); navigate("/profile") }}>My Profile</span>
-        <span className='w-[240px] text-center text-white border border-white/30 bg-nitt-navy-light rounded-lg py-[16px] text-[17px] cursor-pointer' onClick={() => { setShowHam(false); navigate("/enrolledcourses") }}>My Courses</span>
+        <span className='w-[240px] text-center text-white border border-white/30 bg-nitt-navy-light rounded-lg py-[14px] text-[17px] cursor-pointer' onClick={() => { setShowHam(false); navigate("/") }}>Home</span>
+        <span className='w-[240px] text-center text-white border border-white/30 bg-nitt-navy-light rounded-lg py-[14px] text-[17px] cursor-pointer' onClick={() => { setShowHam(false); navigate("/#programs") }}>Online Programs</span>
+        <span className='w-[240px] text-center text-white border border-white/30 bg-nitt-navy-light rounded-lg py-[14px] text-[17px] cursor-pointer' onClick={() => { setShowHam(false); navigate("/#faculty") }}>Faculty</span>
+        <span className='w-[240px] text-center text-white border border-white/30 bg-nitt-navy-light rounded-lg py-[14px] text-[17px] cursor-pointer' onClick={() => { setShowHam(false); navigate("/#about") }}>About</span>
+        <span className='w-[240px] text-center text-white border border-white/30 bg-nitt-navy-light rounded-lg py-[14px] text-[17px] cursor-pointer' onClick={() => { setShowHam(false); navigate("/#contact") }}>Contact</span>
+        <span className='w-[240px] text-center text-white border border-white/30 bg-nitt-navy-light rounded-lg py-[14px] text-[17px] cursor-pointer' onClick={() => { setShowHam(false); navigate("/allcourses") }}>All Courses</span>
+        <span className='w-[240px] text-center text-white border border-white/30 bg-nitt-navy-light rounded-lg py-[14px] text-[17px] cursor-pointer' onClick={() => { setShowHam(false); navigate("/searchwithai") }}>Search with AI</span>
+        <span className='w-[240px] text-center text-white border border-white/30 bg-nitt-navy-light rounded-lg py-[14px] text-[17px] cursor-pointer' onClick={() => { setShowHam(false); navigate("/profile") }}>My Profile</span>
+        <span className='w-[240px] text-center text-white border border-white/30 bg-nitt-navy-light rounded-lg py-[14px] text-[17px] cursor-pointer' onClick={() => { setShowHam(false); navigate("/enrolledcourses") }}>My Courses</span>
 
         {userData?.role == "educator" && (
-          <span className='w-[240px] text-center text-white border border-white/30 bg-nitt-navy-light rounded-lg py-[16px] text-[17px] cursor-pointer' onClick={() => { setShowHam(false); navigate("/dashboard") }}>Dashboard</span>
+          <span className='w-[240px] text-center text-white border border-white/30 bg-nitt-navy-light rounded-lg py-[14px] text-[17px] cursor-pointer' onClick={() => { setShowHam(false); navigate("/dashboard") }}>Dashboard</span>
         )}
         {!userData ? (
-          <span className='w-[240px] text-center text-white bg-nitt-accent rounded-lg py-[16px] text-[17px] cursor-pointer' onClick={() => { setShowHam(false); navigate("/login") }}>Login</span>
+          <span className='w-[240px] text-center text-white bg-nitt-accent rounded-lg py-[14px] text-[17px] cursor-pointer' onClick={() => { setShowHam(false); navigate("/login") }}>Login</span>
         ) : (
-          <span className='w-[240px] text-center text-white bg-nitt-accent rounded-lg py-[16px] text-[17px] cursor-pointer' onClick={() => { setShowHam(false); handleLogout() }}>LogOut</span>
+          <span className='w-[240px] text-center text-white bg-nitt-accent rounded-lg py-[14px] text-[17px] cursor-pointer' onClick={() => { setShowHam(false); handleLogout() }}>LogOut</span>
         )}
       </div>
     </header>

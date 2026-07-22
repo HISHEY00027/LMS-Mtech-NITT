@@ -45,7 +45,7 @@ function Home() {
       <HeroSection />
 
       {/* Popular Programs - existing course cards from backend */}
-      <section id="programs" className='scroll-mt-[130px]'>
+      <section id="programs" className='scroll-mt-[90px] lg:scroll-mt-[215px]'>
         <CardPage />
         <ExploreCourses />
       </section>
@@ -53,7 +53,7 @@ function Home() {
       <WhyChoose />
 
       {/* Vision & Mission - from nitt.edu */}
-      <section id="about" className='w-full bg-white py-[60px] px-6 lg:px-[8%] scroll-mt-[130px]' aria-labelledby="vision-mission-heading">
+      <section id="about" className='w-full bg-white py-[60px] px-6 lg:px-[8%] scroll-mt-[90px] lg:scroll-mt-[215px]' aria-labelledby="vision-mission-heading">
         <div className='flex flex-col items-center gap-2 mb-[40px]'>
           <h2 id="vision-mission-heading" className='text-nitt-navy font-bold text-[30px] md:text-[40px] text-balance text-center'>
             Vision &amp; Mission
